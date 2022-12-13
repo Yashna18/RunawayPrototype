@@ -14,12 +14,13 @@ public class PlayerMovement : MonoBehaviour
     bool atRightWall = false;
     bool atLeftWall = false;
     float speed = 5f;
+    private Vector3 originalPos;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalPos = gameObject.transform.position;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -32,6 +33,11 @@ public class PlayerMovement : MonoBehaviour
         else if (other.tag == "RightWall") 
         {
             atRightWall = true;
+        }
+
+        else if (other.tag == "obstacle") 
+        {
+            gameObject.transform.position = originalPos;
         }
     }
 
